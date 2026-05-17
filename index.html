@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Consulting — AbilityMatrix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --dark:        #263238;
+  --mauve:       #9F747C;
+  --mauve-deep:  #4D2E35;
+  --mauve-mid:   #c4a0a7;
+  --mauve-light: #f2e8ea;
+  --white:       #ffffff;
+  --text:        #757575;
+  --text-muted:  #9e9e9e;
+  --border:      #ece4e5;
+  --bg-soft:     #fdf8f9;
+
+  /* Matrix quadrant palette */
+  --q-ailayer:   #9F747C;
+  --q-delegate:  #A87B6E;
+  --q-keepgoing: #6B7A8B;
+  --q-buildit:   #7A8F7A;
+
+  --f: 'Archivo', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--f);
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+}
+
+/* =====================
+   NAVIGATION
+===================== */
+/* =====================
+   HERO  (previous proportions restored)
+===================== */
+.hero-section { position: relative; overflow: hidden; }
+
+.hero-blob {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 560px;
+  height: 560px;
+  background: var(--mauve-light);
+  border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
+  opacity: 0.55;
+  filter: blur(50px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 100px 6% 90px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+h1 {
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  line-height: 1.08;
+  color: var(--dark);
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+  animation: fadeUp 0.7s ease both;
+}
+
+.hero-lead {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--text);
+  max-width: 500px;
+  line-height: 1.82;
+  margin-bottom: 2.25rem;
+  animation: fadeUp 0.7s 0.12s ease both;
+}
+
+.btn-primary {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--white);
+  background: var(--mauve);
+  text-decoration: none;
+  padding: 0.78rem 1.9rem;
+  border-radius: 40px;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s, transform 0.15s;
+  animation: fadeUp 0.7s 0.22s ease both;
+}
+.btn-primary:hover { opacity: 0.84; transform: translateY(-2px); }
+
+.hero-visual {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeUp 0.9s 0.15s ease both;
+}
+.hero-art { width: 100%; max-width: 400px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================
+   SHARED
+===================== */
+.section-tag {
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: var(--dark);
+  line-height: 1.12;
+  letter-spacing: -0.023em;
+  margin-bottom: 1rem;
+}
+
+.section-lead {
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  font-weight: 300;
+  color: var(--text);
+  max-width: 620px;
+  line-height: 1.85;
+}
+
+/* =====================
+   7 LEVELS — sticky header + scrolling steps
+===================== */
+.levels-section {
+  border-top: 1px solid var(--border);
+}
+
+/* Sticky intro */
+.levels-intro {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 44px 6%;
+  box-shadow: 0 4px 24px rgba(38,50,56,0.04);
+}
+
+.levels-intro-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.levels-intro h2 { margin-bottom: 0.75rem; }
+
+.levels-note {
+  background: var(--mauve-light);
+  border-radius: 14px;
+  padding: 20px 24px;
+  font-size: 0.9rem;
+  color: var(--dark);
+  line-height: 1.72;
+  font-weight: 400;
+}
+.levels-note strong { font-weight: 600; }
+
+/* =====================
+   Layer groups
+===================== */
+.layer-group { width: 100%; }
+.layer-group-white { background: var(--white); }
+.layer-group-bridge { background: var(--bg-soft); }
+.layer-group-value  { background: var(--mauve-light); }
+
+.layer-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+/* Layer header banner */
+.layer-header {
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0 28px;
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.layer-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.layer-name {
+  font-weight: 700;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  color: var(--dark);
+  letter-spacing: -0.018em;
+  line-height: 1.1;
+}
+
+.layer-desc {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  padding-top: 2px;
+}
+
+.layer-group-value .layer-tag { color: var(--mauve); }
+.layer-group-value .layer-name { color: var(--dark); }
+.layer-group-bridge .layer-tag { color: var(--mauve); }
+
+/* Individual level rows */
+.level-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 110px;
+  gap: 40px;
+  padding: 52px 0;
+  border-bottom: 1px solid rgba(38,50,56,0.08);
+  align-items: start;
+  transition: opacity 0.15s;
+}
+.level-row:last-child { border-bottom: none; }
+
+.layer-group-value .level-row { border-bottom-color: rgba(159,116,124,0.18); }
+
+.level-num {
+  font-weight: 800;
+  font-size: clamp(3.5rem, 5.5vw, 5.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: rgba(38,50,56,0.1);
+  padding-top: 6px;
+  transition: color 0.2s;
+}
+
+.layer-group-value .level-num {
+  color: rgba(159,116,124,0.35);
+}
+
+.level-row:hover .level-num {
+  color: rgba(38,50,56,0.22);
+}
+.layer-group-value .level-row:hover .level-num {
+  color: var(--mauve);
+  opacity: 0.7;
+}
+
+.level-content { padding-top: 10px; }
+
+.level-category {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+h3.level-title {
+  font-weight: 700;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  color: var(--dark);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.level-desc {
+  font-size: clamp(0.92rem, 1.2vw, 1rem);
+  color: var(--text);
+  line-height: 1.85;
+  font-weight: 300;
+  max-width: 640px;
+}
+
+/* Padding at end of last layer */
+.layer-group-value .layer-inner { padding-bottom: 80px; }
+
+.level-art {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: 12px;
+  opacity: 0.82;
+}
+.level-art svg { width: 100px; height: 100px; }
+.layer-group-value .level-art { opacity: 0.88; }
+
+/* =====================
+   ADAPT SECTION
+===================== */
+.adapt-section {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+.adapt-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 90px 6%;
+}
+.adapt-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 3rem;
+}
+.adapt-top h2 { line-height: 1.1; }
+.adapt-top-right { padding-top: 10px; }
+.adapt-top-right p {
+  font-size: clamp(0.92rem, 1.2vw, 1.02rem);
+  color: var(--text);
+  line-height: 1.88;
+  font-weight: 300;
+  margin-bottom: 1.1rem;
+}
+.adapt-contrast {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.adapt-card {
+  border-radius: 16px;
+  padding: 36px 36px 32px;
+  border: 1.5px solid var(--border);
+}
+.adapt-card-dt { background: var(--bg-soft); }
+.adapt-card-ai { background: var(--mauve-light); border-color: rgba(159,116,124,0.28); }
+.adapt-card-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  display: block;
+}
+.adapt-card-ai .adapt-card-label { color: var(--mauve); }
+.adapt-card-visual { margin-bottom: 1.4rem; }
+.adapt-card h3 {
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 0.6rem;
+}
+.adapt-card p {
+  font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+  color: var(--text);
+  line-height: 1.78;
+  font-weight: 300;
+}
+.adapt-example {
+  margin-top: 1rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  color: var(--dark);
+  line-height: 1.6;
+  font-weight: 400;
+  font-style: italic;
+}
+.adapt-card-dt .adapt-example { background: rgba(38,50,56,0.06); }
+.adapt-card-ai .adapt-example { background: rgba(159,116,124,0.15); }
+
+/* =====================
+   2x2 MATRIX — full-width flip cards
+===================== */
+.matrix-section { background: var(--bg-soft); border-top: 1px solid var(--border); }
+
+.matrix-intro {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 90px 6% 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.matrix-intro h2 { margin-bottom: 0.75rem; }
+
+.matrix-chart-wrap {
+  padding: 0 4% 80px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.matrix-axis-top {
+  display: flex;
+  margin-bottom: 10px;
+  padding-left: 80px;
+}
+.matrix-axis-top-label {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.matrix-body {
+  display: flex;
+  align-items: stretch;
+}
+
+.matrix-y-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-right: 16px;
+  flex-shrink: 0;
+  width: 80px;
+}
+
+.y-edge {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--dark);
+  opacity: 0.55;
+}
+
+.matrix-y-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.matrix-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px; /* dead zone between cards prevents simultaneous hover */
+}
+
+/* Flip card */
+.matrix-card {
+  aspect-ratio: 16/9;
+  perspective: 1200px;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  /* no delay on close: previous card starts shutting immediately */
+  transition: transform 0.72s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 0.15s delay before opening prevents two cards turning simultaneously */
+.matrix-card:hover .card-inner {
+  transform: rotateY(180deg);
+  transition: transform 0.72s 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.matrix-card.flipped .card-inner { transform: rotateY(180deg); }
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  align-items: flex-start;
+  text-align: left;
+  padding: 40px 48px;
+  justify-content: flex-start;
+  padding-top: 44px;
+}
+
+.c-ailayer   { background: var(--q-ailayer); }
+.c-delegate  { background: var(--q-delegate); }
+.c-keepgoing { background: var(--q-keepgoing); }
+.c-buildit   { background: var(--q-buildit); }
+
+.card-context {
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1rem;
+}
+
+.card-action {
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  color: var(--white);
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.card-hint {
+  margin-top: 1.1rem;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.38);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.card-back-title {
+  font-weight: 700;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.card-back-desc {
+  font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+  color: rgba(255,255,255,0.75);
+  line-height: 1.82;
+  font-weight: 300;
+}
+
+.matrix-axis-bottom {
+  display: flex;
+  padding: 12px 0 0 80px;
+}
+.matrix-axis-bottom-label {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.matrix-axis-bottom-label.center {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* =====================
+   PRINCIPLE — deep mauve bg
+===================== */
+.principle-outer {
+  background: var(--mauve-deep);
+  padding: 90px 6%;
+}
+
+.principle-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.principle-outer .section-tag { color: var(--mauve-mid); }
+.principle-outer h2 { color: var(--white); }
+
+.principle-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-top: 2.5rem;
+}
+
+.principle-quote {
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  color: var(--white);
+  line-height: 1.48;
+  font-style: italic;
+  border-left: 3px solid var(--mauve);
+  padding-left: 28px;
+}
+
+.principle-right > p {
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  color: rgba(255,255,255,0.7);
+  line-height: 1.88;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.principle-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 1.5rem;
+}
+
+.principle-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: clamp(0.88rem, 1.2vw, 0.98rem);
+  color: rgba(255,255,255,0.7);
+  line-height: 1.72;
+  font-weight: 300;
+}
+
+.pp-num {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--mauve);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.68rem;
+  color: var(--white);
+  margin-top: 3px;
+}
+
+/* =====================
+   METRICS STRIP
+===================== */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+}
+
+.metric-cell {
+  background: var(--bg-soft);
+  padding: 52px 48px;
+}
+
+.metric-number {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  color: var(--dark);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.metric-label {
+  font-size: clamp(0.88rem, 1.2vw, 1rem);
+  color: var(--text);
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 180px;
+  display: block;
+}
+
+/* =====================
+   USE CASES
+===================== */
+.section-wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 90px 6%;
+}
+
+.outcomes-header { margin-bottom: 3.5rem; }
+.outcomes-header h2 { margin-bottom: 0.9rem; }
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 22px;
+}
+
+.case-card {
+  grid-column: span 2;
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--white);
+  transition: box-shadow 0.2s, transform 0.22s;
+}
+.case-card:hover {
+  box-shadow: 0 14px 44px rgba(38,50,56,0.1);
+  transform: translateY(-4px);
+}
+
+/* Center last 2 cards */
+.case-card:nth-child(4) { grid-column: 2 / span 2; }
+.case-card:nth-child(5) { grid-column: 4 / span 2; }
+
+.case-img { width: 100%; height: 200px; display: block; background: var(--bg-soft); }
+
+.case-body { padding: 24px 24px 28px; }
+
+.case-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  background: var(--mauve-light);
+  padding: 3px 11px;
+  border-radius: 20px;
+  margin-bottom: 11px;
+}
+
+.case-title {
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  color: var(--dark);
+  line-height: 1.3;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.case-desc {
+  font-size: clamp(0.85rem, 1.1vw, 0.92rem);
+  color: var(--text);
+  line-height: 1.78;
+  font-weight: 300;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer-outer {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+  padding: 90px 6%;
+  text-align: center;
+}
+
+.footer-inner { max-width: 580px; margin: 0 auto; }
+
+.footer-inner h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  margin-bottom: 0.9rem;
+}
+
+.footer-sub {
+  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.82;
+  margin-bottom: 2.5rem;
+}
+
+.footer-meta {
+  margin-top: 3rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+  font-weight: 400;
+}
+.footer-meta a { color: var(--mauve); text-decoration: none; }
+.footer-meta a:hover { text-decoration: underline; }
+
+/* =====================
+   SCROLL REVEAL
+===================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 960px) {
+  .hero-inner         { grid-template-columns: 1fr; padding: 68px 6% 60px; }
+  .hero-visual        { display: none; }
+  .levels-intro-inner { grid-template-columns: 1fr; gap: 28px; }
+  .matrix-intro       { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
+  .principle-body     { grid-template-columns: 1fr; gap: 40px; }
+  .level-row          { grid-template-columns: 80px 1fr; gap: 28px; }
+  .level-art          { display: none; }
+  .adapt-top          { grid-template-columns: 1fr; gap: 40px; }
+  .adapt-contrast     { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .levels-intro       { position: static; }
+  .matrix-grid        { grid-template-columns: 1fr; }
+  .matrix-card        { aspect-ratio: 5/3; }
+  .matrix-y-wrap,
+  .matrix-axis-bottom { display: none; }
+  .metrics-strip      { grid-template-columns: 1fr; }
+  .metric-cell        { padding: 36px 6%; }
+  .cases-grid         { grid-template-columns: 1fr; }
+  .case-card          { grid-column: span 1 !important; }
+  .level-row          { grid-template-columns: 60px 1fr; gap: 20px; padding: 36px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<!-- HERO (previous proportions, no eyebrow) -->
+<div class="hero-section">
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1>AI doesn't replace your thinking. It removes the work around it.</h1>
+      <p class="hero-lead">AI moves fast. Most businesses are stuck at copy-paste prompting. We help you find where it actually creates leverage - and build the things that prove it.</p>
+      <a href="mailto:ai@abilitymatrix.com" class="btn-primary">Let's talk</a>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <svg class="hero-art" viewBox="0 0 400 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="200" cy="185" rx="170" ry="145" fill="#f2e8ea" opacity="0.55"/>
+        <circle cx="200" cy="185" r="128" stroke="#9F747C" stroke-width="1.2" opacity="0.18"/>
+        <circle cx="200" cy="185" r="96"  stroke="#9F747C" stroke-width="1.2" opacity="0.25"/>
+        <circle cx="200" cy="185" r="64"  stroke="#9F747C" stroke-width="1.5" opacity="0.35"/>
+        <circle cx="200" cy="185" r="64"  fill="#9F747C" opacity="0.08"/>
+        <circle cx="200" cy="185" r="22" fill="#9F747C" opacity="0.9"/>
+        <circle cx="200" cy="185" r="10" fill="white"/>
+        <line x1="200" y1="185" x2="96"  y2="108" stroke="#263238" stroke-width="1.2" opacity="0.13"/>
+        <line x1="200" y1="185" x2="312" y2="112" stroke="#263238" stroke-width="1.2" opacity="0.13"/>
+        <line x1="200" y1="185" x2="318" y2="268" stroke="#263238" stroke-width="1.2" opacity="0.13"/>
+        <line x1="200" y1="185" x2="88"  y2="265" stroke="#263238" stroke-width="1.2" opacity="0.13"/>
+        <line x1="200" y1="185" x2="200" y2="58"  stroke="#263238" stroke-width="1.2" opacity="0.13"/>
+        <circle cx="96"  cy="108" r="9"  fill="#9F747C" opacity="0.45"/>
+        <circle cx="312" cy="112" r="7"  fill="#263238" opacity="0.22"/>
+        <circle cx="318" cy="268" r="10" fill="#9F747C" opacity="0.32"/>
+        <circle cx="88"  cy="265" r="7"  fill="#263238" opacity="0.18"/>
+        <circle cx="200" cy="58"  r="9"  fill="#263238" opacity="0.22"/>
+        <g fill="#263238" opacity="0.09">
+          <circle cx="38" cy="38" r="2.2"/><circle cx="78" cy="38" r="2.2"/>
+          <circle cx="38" cy="78" r="2.2"/><circle cx="362" cy="38" r="2.2"/>
+          <circle cx="322" cy="38" r="2.2"/><circle cx="362" cy="78" r="2.2"/>
+          <circle cx="38" cy="290" r="2.2"/><circle cx="38" cy="330" r="2.2"/>
+          <circle cx="362" cy="290" r="2.2"/><circle cx="362" cy="330" r="2.2"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- 7 LEVELS -->
+<div class="levels-section">
+
+  <!-- STICKY INTRO (sticks as steps scroll below) -->
+  <div class="levels-intro">
+    <div class="levels-intro-inner">
+      <div>
+        <span class="section-tag">The fluency ladder</span>
+        <h2>How AI fluency actually develops</h2>
+        <p class="section-lead">Three distinct phases. Most people are stuck in phase one. Scalable business value starts at level 4.</p>
+      </div>
+      <div class="levels-note">
+        <strong>This is not a linear progression.</strong> The time investment grows exponentially with each phase. Most "AI tips" content operates entirely within levels 1 and 2 - which is why most companies feel like they're doing AI but not getting leverage from it.
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 1: Personal fluency -->
+  <div class="layer-group layer-group-white">
+    <div class="layer-inner">
+      <div class="layer-header">
+        <span class="layer-tag">Levels 1–2</span>
+        <span class="layer-name">Personal fluency</span>
+        <span class="layer-desc">You're using AI. Not yet leveraging it.</span>
+      </div>
+
+      <div class="level-row reveal">
+        <span class="level-num">1</span>
+        <div class="level-content">
+          <div class="level-category">Getting started</div>
+          <h3 class="level-title">Simple prompts</h3>
+          <p class="level-desc">Trying to get the wording right. Ask, get something back, adjust. Most people live here longer than they should - and most "AI tips" content never moves them past this point.</p>
+        </div>
+        <div class="level-art" aria-hidden="true">
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="55" cy="58" rx="46" ry="30" fill="#f2e8ea" opacity="0.5"/>
+            <circle cx="18" cy="58" r="6" fill="#263238" opacity="0.18"/>
+            <line x1="24" y1="58" x2="40" y2="58" stroke="#263238" stroke-width="1.2" opacity="0.2"/>
+            <polygon points="40,55 47,58 40,61" fill="#263238" opacity="0.2"/>
+            <circle cx="55" cy="58" r="15" fill="#9F747C" opacity="0.9"/>
+            <circle cx="55" cy="58" r="6" fill="white"/>
+            <line x1="70" y1="58" x2="86" y2="58" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="92" cy="58" r="7" fill="#9F747C" opacity="0.32"/>
+            <g fill="#263238" opacity="0.09">
+              <circle cx="12" cy="22" r="1.8"/><circle cx="22" cy="22" r="1.8"/>
+              <circle cx="88" cy="88" r="1.8"/><circle cx="98" cy="88" r="1.8"/>
+              <circle cx="98" cy="98" r="1.8"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="level-row reveal d1">
+        <span class="level-num">2</span>
+        <div class="level-content">
+          <div class="level-category">Consistency</div>
+          <h3 class="level-title">Fine-tuning to your taste</h3>
+          <p class="level-desc">Still simple prompts, but more consistent outputs. You know which tools work for which tasks. You stop starting from scratch every session.</p>
+        </div>
+        <div class="level-art" aria-hidden="true">
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="55" cy="55" rx="44" ry="32" fill="#f2e8ea" opacity="0.5"/>
+            <circle cx="55" cy="55" r="15" fill="#9F747C" opacity="0.9"/>
+            <circle cx="55" cy="55" r="6" fill="white"/>
+            <line x1="18" y1="55" x2="40" y2="55" stroke="#263238" stroke-width="1.2" opacity="0.2"/>
+            <circle cx="14" cy="55" r="6" fill="#263238" opacity="0.18"/>
+            <line x1="70" y1="55" x2="86" y2="55" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="90" cy="55" r="7" fill="#9F747C" opacity="0.3"/>
+            <path d="M 90 48 Q 100 30 80 20 Q 60 10 40 22 Q 20 34 14 48" stroke="#9F747C" stroke-width="1.2" fill="none" opacity="0.3" stroke-dasharray="3 3"/>
+            <polygon points="17,53 14,48 20,48" fill="#9F747C" opacity="0.28"/>
+            <g fill="#263238" opacity="0.09">
+              <circle cx="12" cy="20" r="1.8"/><circle cx="22" cy="20" r="1.8"/>
+              <circle cx="88" cy="90" r="1.8"/><circle cx="98" cy="90" r="1.8"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 2: The turning point -->
+  <div class="layer-group layer-group-bridge">
+    <div class="layer-inner">
+      <div class="layer-header">
+        <span class="layer-tag">Level 3</span>
+        <span class="layer-name">The turning point</span>
+        <span class="layer-desc">Personal use maxes out here. A bridge - and a huge unlock for those who do it well.</span>
+      </div>
+
+      <div class="level-row reveal">
+        <span class="level-num">3</span>
+        <div class="level-content">
+          <div class="level-category">Clarity</div>
+          <h3 class="level-title">Context, goal, intent</h3>
+          <p class="level-desc">You stop asking questions and start defining what you actually need. The triangle: who you are, what you want, why it matters. This is where most sophisticated personal AI users live - and it's already a substantial competitive advantage. But most people never get here, which is why it's still an unlock even though it's still personal use. The reason it's a bridge: once you can hand context over completely, you can delegate. That's level 4.</p>
+        </div>
+        <div class="level-art" aria-hidden="true">
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="55" cy="62" rx="44" ry="34" fill="#f2e8ea" opacity="0.5"/>
+            <line x1="55" y1="18" x2="20" y2="88" stroke="#263238" stroke-width="1.1" opacity="0.14"/>
+            <line x1="55" y1="18" x2="90" y2="88" stroke="#263238" stroke-width="1.1" opacity="0.14"/>
+            <line x1="20" y1="88" x2="90" y2="88" stroke="#263238" stroke-width="1.1" opacity="0.14"/>
+            <line x1="55" y1="18" x2="55" y2="60" stroke="#9F747C" stroke-width="1" opacity="0.25"/>
+            <line x1="20" y1="88" x2="55" y2="60" stroke="#9F747C" stroke-width="1" opacity="0.25"/>
+            <line x1="90" y1="88" x2="55" y2="60" stroke="#9F747C" stroke-width="1" opacity="0.25"/>
+            <circle cx="55" cy="18" r="7" fill="#263238" opacity="0.2"/>
+            <circle cx="20" cy="88" r="7" fill="#9F747C" opacity="0.3"/>
+            <circle cx="90" cy="88" r="7" fill="#263238" opacity="0.18"/>
+            <circle cx="55" cy="60" r="13" fill="#9F747C" opacity="0.9"/>
+            <circle cx="55" cy="60" r="5" fill="white"/>
+            <g fill="#263238" opacity="0.09">
+              <circle cx="88" cy="16" r="1.8"/><circle cx="98" cy="16" r="1.8"/>
+              <circle cx="12" cy="94" r="1.8"/><circle cx="22" cy="94" r="1.8"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 3: Business leverage -->
+  <div class="layer-group layer-group-value">
+    <div class="layer-inner">
+      <div class="layer-header">
+        <span class="layer-tag">Levels 4–7</span>
+        <span class="layer-name">Business leverage</span>
+        <span class="layer-desc">Where the time math changes permanently and ROI compounds across the organization.</span>
+      </div>
+
+      <div class="level-row reveal">
+        <span class="level-num">4</span>
+        <div class="level-content">
+          <div class="level-category">Persistence</div>
+          <h3 class="level-title">Memory and repeatable instructions</h3>
+          <p class="level-desc">The AI knows your business, your standards, and your preferences. Every session picks up where the last one left off. You stop re-explaining yourself - and the outputs reflect an actual understanding of your context, not just your last message.</p>
+        </div>
+        <div class="level-art" aria-hidden="true">
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="55" cy="55" r="42" stroke="#9F747C" stroke-width="1.2" opacity="0.16"/>
+            <circle cx="55" cy="55" r="30" stroke="#9F747C" stroke-width="1.2" opacity="0.22"/>
+            <circle cx="55" cy="55" r="18" stroke="#9F747C" stroke-width="1.4" opacity="0.3"/>
+            <circle cx="55" cy="55" r="18" fill="#9F747C" opacity="0.07"/>
+            <circle cx="97" cy="55" r="6" fill="#9F747C" opacity="0.35"/>
+            <circle cx="76" cy="97" r="5" fill="#263238" opacity="0.18"/>
+            <circle cx="13" cy="55" r="6" fill="#9F747C" opacity="0.28"/>
+            <circle cx="34" cy="13" r="5" fill="#263238" opacity="0.18"/>
+            <circle cx="55" cy="55" r="12" fill="#9F747C" opacity="0.9"/>
+            <circle cx="55" cy="55" r="5" fill="white"/>
+            <g fill="#263238" opacity="0.09">
+              <circle cx="88" cy="14" r="1.8"/><circle cx="98" cy="14" r="1.8"/>
+              <circle cx="12" cy="96" r="1.8"/><circle cx="22" cy="96" r="1.8"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="level-row reveal d1">
+        <span class="level-num">5</span>
+        <div class="level-content">
+          <div class="level-category">Integration</div>
+          <h3 class="level-title">Connecting AI to your systems</h3>
+          <p class="level-desc">Your tools talk to each other through the AI layer. Calendar to timesheet. WhatsApp to CRM. Notes to reports. Information flows without manual steps - because the tools you already use become the interface.</p>
+        </div>
+        <div class="level-art" aria-hidden="true">
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="55" cy="55" rx="44" ry="44" fill="#f2e8ea" opacity="0.35"/>
+            <circle cx="55" cy="55" r="13" fill="#9F747C" opacity="0.9"/>
+            <circle cx="55" cy="55" r="5" fill="white"/>
+            <line x1="55" y1="42" x2="55" y2="18" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="55" cy="14" r="7" fill="#9F747C" opacity="0.38"/>
+            <line x1="67" y1="47" x2="85" y2="30" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="89" cy="26" r="6" fill="#263238" opacity="0.22"/>
+            <line x1="68" y1="55" x2="93" y2="55" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="97" cy="55" r="6" fill="#9F747C" opacity="0.35"/>
+            <line x1="67" y1="63" x2="85" y2="80" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="89" cy="84" r="6" fill="#263238" opacity="0.2"/>
+            <line x1="55" y1="68" x2="55" y2="88" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="55" cy="92" r="7" fill="#9F747C" opacity="0.3"/>
+            <line x1="43" y1="63" x2="25" y2="80" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="21" cy="84" r="6" fill="#263238" opacity="0.18"/>
+            <line x1="42" y1="55" x2="17" y2="55" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="13" cy="55" r="6" fill="#9F747C" opacity="0.3"/>
+            <g fill="#263238" opacity="0.09">
+              <circle cx="10" cy="12" r="1.8"/><circle cx="20" cy="12" r="1.8"/>
+              <circle cx="90" cy="98" r="1.8"/><circle cx="100" cy="98" r="1.8"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="level-row reveal d2">
+        <span class="level-num">6</span>
+        <div class="level-content">
+          <div class="level-category">Delegation</div>
+          <h3 class="level-title">Agents handling subprocesses</h3>
+          <p class="level-desc">You define the task. The agent runs the steps. You stay in the decision seat and review the output. The busywork disappears. You stop doing things and start approving things.</p>
+        </div>
+        <div class="level-art" aria-hidden="true">
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="55" cy="60" rx="44" ry="36" fill="#f2e8ea" opacity="0.4"/>
+            <circle cx="55" cy="24" r="13" fill="#9F747C" opacity="0.9"/>
+            <circle cx="55" cy="24" r="5" fill="white"/>
+            <line x1="42" y1="32" x2="25" y2="60" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <line x1="55" y1="37" x2="55" y2="60" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <line x1="68" y1="32" x2="85" y2="60" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <circle cx="25" cy="65" r="9" fill="#9F747C" opacity="0.45"/>
+            <circle cx="25" cy="65" r="4" fill="white" opacity="0.8"/>
+            <circle cx="55" cy="65" r="9" fill="#9F747C" opacity="0.45"/>
+            <circle cx="55" cy="65" r="4" fill="white" opacity="0.8"/>
+            <circle cx="85" cy="65" r="9" fill="#9F747C" opacity="0.45"/>
+            <circle cx="85" cy="65" r="4" fill="white" opacity="0.8"/>
+            <line x1="25" y1="74" x2="25" y2="88" stroke="#263238" stroke-width="1" opacity="0.14"/>
+            <line x1="55" y1="74" x2="55" y2="88" stroke="#263238" stroke-width="1" opacity="0.14"/>
+            <line x1="85" y1="74" x2="85" y2="88" stroke="#263238" stroke-width="1" opacity="0.14"/>
+            <circle cx="25" cy="92" r="5" fill="#263238" opacity="0.16"/>
+            <circle cx="55" cy="92" r="5" fill="#263238" opacity="0.16"/>
+            <circle cx="85" cy="92" r="5" fill="#263238" opacity="0.16"/>
+            <g fill="#263238" opacity="0.09">
+              <circle cx="10" cy="12" r="1.8"/><circle cx="20" cy="12" r="1.8"/>
+              <circle cx="90" cy="100" r="1.8"/><circle cx="100" cy="100" r="1.8"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="level-row reveal d3">
+        <span class="level-num">7</span>
+        <div class="level-content">
+          <div class="level-category">Automation</div>
+          <h3 class="level-title">Full automation</h3>
+          <p class="level-desc">Agents run on triggers or schedules. You review, not do. This is where the time math changes permanently - and where most executives never arrive because they called level 2 "done."</p>
+        </div>
+        <div class="level-art" aria-hidden="true">
+          <svg viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="38" cy="38" r="26" stroke="#9F747C" stroke-width="1.4" opacity="0.3"/>
+            <circle cx="38" cy="38" r="26" fill="#f2e8ea" opacity="0.4"/>
+            <circle cx="38" cy="38" r="18" stroke="#9F747C" stroke-width="1.2" opacity="0.22"/>
+            <line x1="38" y1="20" x2="38" y2="30" stroke="#263238" stroke-width="1.5" opacity="0.22"/>
+            <line x1="56" y1="20" x2="50" y2="28" stroke="#263238" stroke-width="1.2" opacity="0.15"/>
+            <line x1="56" y1="38" x2="47" y2="38" stroke="#263238" stroke-width="1.2" opacity="0.18"/>
+            <line x1="38" y1="38" x2="48" y2="30" stroke="#9F747C" stroke-width="1.8" opacity="0.55" stroke-linecap="round"/>
+            <circle cx="38" cy="38" r="3" fill="#9F747C" opacity="0.8"/>
+            <line x1="62" y1="50" x2="72" y2="58" stroke="#263238" stroke-width="1.2" opacity="0.2"/>
+            <circle cx="80" cy="62" r="12" fill="#9F747C" opacity="0.85"/>
+            <circle cx="80" cy="62" r="5" fill="white"/>
+            <line x1="92" y1="62" x2="102" y2="62" stroke="#263238" stroke-width="1" opacity="0.18"/>
+            <circle cx="106" cy="62" r="4" fill="#9F747C" opacity="0.3"/>
+            <line x1="80" y1="74" x2="80" y2="84" stroke="#263238" stroke-width="1" opacity="0.18"/>
+            <circle cx="80" cy="88" r="4" fill="#263238" opacity="0.16"/>
+            <line x1="68" y1="70" x2="60" y2="80" stroke="#263238" stroke-width="1" opacity="0.15"/>
+            <circle cx="56" cy="84" r="4" fill="#9F747C" opacity="0.25"/>
+            <g fill="#263238" opacity="0.09">
+              <circle cx="8" cy="88" r="1.8"/><circle cx="18" cy="88" r="1.8"/>
+              <circle cx="8" cy="100" r="1.8"/>
+              <circle cx="92" cy="10" r="1.8"/><circle cx="102" cy="10" r="1.8"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /levels-section -->
+
+<!-- 2x2 MATRIX -->
+<div class="matrix-section">
+  <div class="matrix-intro reveal">
+    <div>
+      <span class="section-tag">Where to apply it</span>
+      <h2>Not everything should be AI-ified.</h2>
+    </div>
+    <div>
+      <p class="section-lead">Map every business activity across two axes: how often you use it, and how deep your own expertise is. The quadrant tells you what to do next. Hover each cell to see why.</p>
+    </div>
+  </div>
+
+  <div class="matrix-chart-wrap">
+    <div class="matrix-body reveal d1">
+      <div class="matrix-y-wrap">
+        <span class="y-edge">High</span>
+        <div class="matrix-y-label">Frequency</div>
+        <span class="y-edge">Low</span>
+      </div>
+
+      <div class="matrix-grid">
+
+        <!-- Top-left: High freq + Low domain = Delegate -->
+        <div class="matrix-card" role="button" aria-label="Delegate">
+          <div class="card-inner">
+            <div class="card-face c-delegate">
+              <p class="card-context">High frequency · Low domain</p>
+              <span class="card-action">Delegate</span>
+              <p class="card-hint">Hover to learn why</p>
+            </div>
+            <div class="card-face card-back c-delegate">
+              <div class="card-back-title">Someone else does this better.</div>
+              <p class="card-back-desc">You're doing something frequently that others specialize in. The combination of high effort and low expertise means you're slow and probably below market quality. Remove it from your plate entirely.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top-right: High freq + High domain = Keep Going -->
+        <div class="matrix-card" role="button" aria-label="Keep Going">
+          <div class="card-inner">
+            <div class="card-face c-keepgoing">
+              <p class="card-context">High frequency · High domain</p>
+              <span class="card-action">Keep Going</span>
+              <p class="card-hint">Hover to learn why</p>
+            </div>
+            <div class="card-face card-back c-keepgoing">
+              <div class="card-back-title">AI adds friction here, not value.</div>
+              <p class="card-back-desc">You're an expert and you do this constantly. Your workflow is already optimized. Adding an AI layer creates a new interface to manage, introduces risk in a domain where you catch errors anyway, and slows you down.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom-left: Low freq + Low domain = AI Layer -->
+        <div class="matrix-card" role="button" aria-label="AI Layer">
+          <div class="card-inner">
+            <div class="card-face c-ailayer">
+              <p class="card-context">Low frequency · Low domain</p>
+              <span class="card-action">AI Layer</span>
+              <p class="card-hint">Hover to learn why</p>
+            </div>
+            <div class="card-face card-back c-ailayer">
+              <div class="card-back-title">This is where AI is indispensable.</div>
+              <p class="card-back-desc">Low expertise, low frequency - you can't justify hiring for it and don't know enough to do it well. An AI layer connected to your systems lets you ask questions in plain language and get answers you couldn't otherwise reach. Highest-leverage quadrant for most businesses.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom-right: Low freq + High domain = Build It -->
+        <div class="matrix-card" role="button" aria-label="Build It">
+          <div class="card-inner">
+            <div class="card-face c-buildit">
+              <p class="card-context">Low frequency · High domain</p>
+              <span class="card-action">Build It</span>
+              <p class="card-hint">Hover to learn why</p>
+            </div>
+            <div class="card-face card-back c-buildit">
+              <div class="card-back-title">Automate for yourself first.</div>
+              <p class="card-back-desc">High value, low urgency. You understand this deeply but rarely need it - which means the cognitive load of re-entering context each time is disproportionate to the frequency. A targeted AI build that captures your expertise and surfaces it on demand pays dividends for years.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="matrix-axis-bottom reveal">
+      <div class="matrix-axis-bottom-label">← Low domain knowledge</div>
+      <div class="matrix-axis-bottom-label center">Domain Knowledge</div>
+      <div class="matrix-axis-bottom-label">High domain knowledge →</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRINCIPLE -->
+<div class="principle-outer">
+  <div class="principle-inner">
+    <span class="section-tag">The principle that makes it work</span>
+    <h2>The agent won't save you from yourself.</h2>
+
+    <div class="principle-body">
+      <div class="principle-quote reveal">
+        "The best results come when you give it full information access, stay in the decision seat, and let the AI fill in the blanks."
+      </div>
+      <div class="principle-right reveal d2">
+        <p>The more you and the AI know about the problem, the better the output. Handing a project to an AI in a domain you don't understand is a recipe for confidently wrong answers.</p>
+        <ul class="principle-points">
+          <li>
+            <span class="pp-num" aria-hidden="true">1</span>
+            Give it full information access - your context, your standards, your constraints. Not just the question.
+          </li>
+          <li>
+            <span class="pp-num" aria-hidden="true">2</span>
+            Stay in the decision seat. The AI offers angles, surfaces options, and does the conversion work. You make the call.
+          </li>
+          <li>
+            <span class="pp-num" aria-hidden="true">3</span>
+            Let it handle first drafts, analysis, reformatting, and research - the work that surrounds the thinking.
+          </li>
+        </ul>
+        <p style="margin-top: 1.5rem;">This is not a limitation. It's the design. AI amplifies judgment. It doesn't replace it.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div class="metrics-strip reveal">
+  <div class="metric-cell">
+    <span class="metric-number">2,000+</span>
+    <span class="metric-label">hours of AI consulting delivered</span>
+  </div>
+  <div class="metric-cell">
+    <span class="metric-number">50+</span>
+    <span class="metric-label">business outcomes shipped</span>
+  </div>
+  <div class="metric-cell">
+    <span class="metric-number">6 wks</span>
+    <span class="metric-label">from original research to live revenue</span>
+  </div>
+</div>
+
+<!-- ADAPT SECTION -->
+<section class="adapt-section">
+  <div class="adapt-inner">
+    <div class="adapt-top">
+      <div class="reveal">
+        <span class="section-tag">Where digital transformation stalls</span>
+        <h2>Adapt instead of&nbsp;transform.</h2>
+      </div>
+      <div class="adapt-top-right reveal d2">
+        <p>Digital transformation installs a new process and assumes compliance. The software has one way to do things. Everyone should follow it. Some do. Many don't. You spend energy on enforcement - consequences, incentives, retraining - and still end up running a less efficient version of the intended workflow.</p>
+        <p>The deeper problem is data. Inconsistent process means inconsistent input. No integrated data means decision-making still runs on instinct and spreadsheets - which is exactly what the transformation was supposed to fix. You have the system but not the information.</p>
+        <p>AI takes a different assumption: work happens the way it happens. You accommodate the deviation, capture what was invisible before, and improve from there. 70% consistent data with zero friction beats 0% from a system nobody uses.</p>
+      </div>
+    </div>
+
+    <div class="adapt-contrast">
+      <div class="adapt-card adapt-card-dt reveal">
+        <span class="adapt-card-label">The transformation model</span>
+        <div class="adapt-card-visual">
+          <svg viewBox="0 0 340 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="170" cy="55" rx="160" ry="42" fill="#ece4e5" opacity="0.4"/>
+            <circle cx="28" cy="22" r="7" fill="#263238" opacity="0.22"/>
+            <circle cx="28" cy="44" r="7" fill="#263238" opacity="0.22"/>
+            <circle cx="28" cy="66" r="7" fill="#263238" opacity="0.22"/>
+            <circle cx="28" cy="88" r="7" fill="#263238" opacity="0.15"/>
+            <line x1="35" y1="22" x2="128" y2="55" stroke="#263238" stroke-width="1" opacity="0.1"/>
+            <line x1="35" y1="44" x2="128" y2="55" stroke="#263238" stroke-width="1" opacity="0.12"/>
+            <line x1="35" y1="66" x2="128" y2="55" stroke="#263238" stroke-width="1" opacity="0.12"/>
+            <line x1="35" y1="88" x2="128" y2="55" stroke="#263238" stroke-width="1" opacity="0.08"/>
+            <rect x="120" y="44" width="22" height="22" rx="4" fill="#263238" opacity="0.28"/>
+            <line x1="21" y1="15" x2="35" y2="29" stroke="#9F747C" stroke-width="1.5" opacity="0.55"/>
+            <line x1="35" y1="15" x2="21" y2="29" stroke="#9F747C" stroke-width="1.5" opacity="0.55"/>
+            <line x1="21" y1="81" x2="35" y2="95" stroke="#9F747C" stroke-width="1.5" opacity="0.45"/>
+            <line x1="35" y1="81" x2="21" y2="95" stroke="#9F747C" stroke-width="1.5" opacity="0.45"/>
+            <line x1="142" y1="51" x2="248" y2="40" stroke="#263238" stroke-width="1" opacity="0.14"/>
+            <line x1="142" y1="59" x2="248" y2="70" stroke="#263238" stroke-width="1" opacity="0.14"/>
+            <circle cx="258" cy="38" r="8" fill="#263238" opacity="0.18"/>
+            <circle cx="258" cy="72" r="8" fill="#263238" opacity="0.18"/>
+            <line x1="270" y1="38" x2="310" y2="30" stroke="#263238" stroke-width="0.8" opacity="0.1" stroke-dasharray="3 3"/>
+            <line x1="270" y1="72" x2="310" y2="80" stroke="#263238" stroke-width="0.8" opacity="0.1" stroke-dasharray="3 3"/>
+            <line x1="270" y1="55" x2="310" y2="55" stroke="#263238" stroke-width="0.8" opacity="0.06" stroke-dasharray="3 3"/>
+          </svg>
+        </div>
+        <h3>One process. Enforce adoption.</h3>
+        <p>Those who deviate fall outside the data. You manage the gap between the design and reality - forever. The system is used, but not the way it was built.</p>
+        <div class="adapt-example">The expense system requires desktop login. Half the team submits quarterly. Finance estimates the rest.</div>
+      </div>
+
+      <div class="adapt-card adapt-card-ai reveal d2">
+        <span class="adapt-card-label">The accommodation model</span>
+        <div class="adapt-card-visual">
+          <svg viewBox="0 0 340 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="200" cy="55" rx="140" ry="42" fill="#f2e8ea" opacity="0.5"/>
+            <circle cx="28" cy="18" r="7" fill="#9F747C" opacity="0.32"/>
+            <circle cx="55" cy="38" r="6" fill="#263238" opacity="0.2"/>
+            <circle cx="22" cy="58" r="7" fill="#9F747C" opacity="0.28"/>
+            <circle cx="50" cy="80" r="6" fill="#263238" opacity="0.18"/>
+            <circle cx="28" cy="96" r="7" fill="#9F747C" opacity="0.25"/>
+            <line x1="35" y1="18" x2="185" y2="55" stroke="#263238" stroke-width="1" opacity="0.1"/>
+            <line x1="61" y1="38" x2="185" y2="55" stroke="#263238" stroke-width="1" opacity="0.1"/>
+            <line x1="29" y1="58" x2="185" y2="55" stroke="#263238" stroke-width="1.2" opacity="0.12"/>
+            <line x1="56" y1="80" x2="185" y2="55" stroke="#263238" stroke-width="1" opacity="0.1"/>
+            <line x1="35" y1="96" x2="185" y2="55" stroke="#263238" stroke-width="1" opacity="0.09"/>
+            <circle cx="185" cy="55" r="26" stroke="#9F747C" stroke-width="1.2" opacity="0.22"/>
+            <circle cx="185" cy="55" r="16" fill="#9F747C" opacity="0.9"/>
+            <circle cx="185" cy="55" r="7" fill="white"/>
+            <line x1="201" y1="55" x2="285" y2="55" stroke="#263238" stroke-width="1.4" opacity="0.18"/>
+            <circle cx="295" cy="55" r="12" fill="#9F747C" opacity="0.38"/>
+            <line x1="295" y1="43" x2="315" y2="28" stroke="#263238" stroke-width="1" opacity="0.14"/>
+            <line x1="307" y1="55" x2="330" y2="55" stroke="#263238" stroke-width="1" opacity="0.14"/>
+            <line x1="295" y1="67" x2="315" y2="82" stroke="#263238" stroke-width="1" opacity="0.14"/>
+            <circle cx="318" cy="25" r="6" fill="#263238" opacity="0.16"/>
+            <circle cx="334" cy="55" r="6" fill="#9F747C" opacity="0.28"/>
+            <circle cx="318" cy="85" r="6" fill="#263238" opacity="0.14"/>
+          </svg>
+        </div>
+        <h3>Many inputs. One consistent data set.</h3>
+        <p>Multiple paths, all arriving at the same place. You accommodate how work actually happens and capture what was invisible before. Perfect compliance is not required.</p>
+        <div class="adapt-example">The WhatsApp bot asks one question Monday morning. Everyone replies in 30 seconds. The hours log themselves.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section>
+  <div class="section-wrap">
+    <div class="outcomes-header reveal">
+      <span class="section-tag">From the field</span>
+      <h2>A sample of what we've built.</h2>
+      <p class="section-lead">Some are software. Some are research pipelines. Some are process changes that unlocked revenue. The common thread: something that didn't exist before, now runs.</p>
+    </div>
+
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <svg class="case-img" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <ellipse cx="300" cy="100" rx="275" ry="82" fill="#f2e8ea" opacity="0.5"/>
+          <circle cx="300" cy="100" r="72" stroke="#9F747C" stroke-width="1.2" opacity="0.18"/>
+          <circle cx="300" cy="100" r="48" stroke="#9F747C" stroke-width="1.2" opacity="0.25"/>
+          <circle cx="300" cy="100" r="48" fill="#9F747C" opacity="0.06"/>
+          <line x1="300" y1="100" x2="372" y2="100" stroke="#263238" stroke-width="1" opacity="0.13"/>
+          <line x1="300" y1="100" x2="351" y2="151" stroke="#263238" stroke-width="1" opacity="0.13"/>
+          <line x1="300" y1="100" x2="300" y2="172" stroke="#263238" stroke-width="1" opacity="0.13"/>
+          <line x1="300" y1="100" x2="249" y2="151" stroke="#263238" stroke-width="1" opacity="0.13"/>
+          <line x1="300" y1="100" x2="228" y2="100" stroke="#263238" stroke-width="1" opacity="0.13"/>
+          <line x1="300" y1="100" x2="249" y2="49" stroke="#263238" stroke-width="1" opacity="0.13"/>
+          <line x1="300" y1="100" x2="300" y2="28" stroke="#263238" stroke-width="1" opacity="0.13"/>
+          <line x1="300" y1="100" x2="351" y2="49" stroke="#263238" stroke-width="1" opacity="0.13"/>
+          <circle cx="372" cy="100" r="6" fill="#9F747C" opacity="0.4"/>
+          <circle cx="351" cy="151" r="5" fill="#263238" opacity="0.2"/>
+          <circle cx="300" cy="172" r="7" fill="#9F747C" opacity="0.35"/>
+          <circle cx="249" cy="151" r="5" fill="#263238" opacity="0.18"/>
+          <circle cx="228" cy="100" r="6" fill="#9F747C" opacity="0.4"/>
+          <circle cx="249" cy="49" r="5" fill="#263238" opacity="0.2"/>
+          <circle cx="300" cy="28" r="7" fill="#9F747C" opacity="0.35"/>
+          <circle cx="351" cy="49" r="5" fill="#263238" opacity="0.18"/>
+          <circle cx="300" cy="100" r="14" fill="#9F747C" opacity="0.9"/>
+          <circle cx="300" cy="100" r="6" fill="white"/>
+          <g fill="#263238" opacity="0.09">
+            <circle cx="28" cy="20" r="2"/><circle cx="52" cy="20" r="2"/><circle cx="76" cy="20" r="2"/>
+            <circle cx="28" cy="40" r="2"/><circle cx="52" cy="40" r="2"/>
+            <circle cx="524" cy="160" r="2"/><circle cx="548" cy="160" r="2"/><circle cx="572" cy="160" r="2"/>
+            <circle cx="548" cy="180" r="2"/><circle cx="572" cy="180" r="2"/>
+          </g>
+        </svg>
+        <div class="case-body">
+          <span class="case-tag">Research</span>
+          <div class="case-title">Research to revenue in 6 weeks</div>
+          <p class="case-desc">Designed and ran a 104-person consumer survey across Canada and the US using AI. Analyzed results, built a framework, delivered a live workshop, published the toolkit - all within 6 weeks. The same pipeline now runs as a repeatable revenue model.</p>
+        </div>
+      </div>
+
+      <div class="case-card reveal d1">
+        <svg class="case-img" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <ellipse cx="400" cy="100" rx="195" ry="82" fill="#f2e8ea" opacity="0.5"/>
+          <circle cx="70" cy="42" r="8" fill="#9F747C" opacity="0.3"/>
+          <circle cx="155" cy="28" r="6" fill="#263238" opacity="0.2"/>
+          <circle cx="90" cy="100" r="7" fill="#9F747C" opacity="0.25"/>
+          <circle cx="185" cy="80" r="5" fill="#263238" opacity="0.18"/>
+          <circle cx="130" cy="155" r="8" fill="#9F747C" opacity="0.28"/>
+          <circle cx="60" cy="162" r="5" fill="#263238" opacity="0.15"/>
+          <circle cx="195" cy="138" r="6" fill="#9F747C" opacity="0.22"/>
+          <line x1="70" y1="42" x2="385" y2="100" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="155" y1="28" x2="385" y2="100" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="90" y1="100" x2="385" y2="100" stroke="#263238" stroke-width="1" opacity="0.12"/>
+          <line x1="185" y1="80" x2="385" y2="100" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="130" y1="155" x2="385" y2="100" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="60" y1="162" x2="385" y2="100" stroke="#263238" stroke-width="1" opacity="0.09"/>
+          <line x1="195" y1="138" x2="385" y2="100" stroke="#263238" stroke-width="1" opacity="0.09"/>
+          <circle cx="385" cy="100" r="52" stroke="#9F747C" stroke-width="1.2" opacity="0.2"/>
+          <circle cx="385" cy="100" r="32" stroke="#9F747C" stroke-width="1.2" opacity="0.28"/>
+          <circle cx="385" cy="100" r="32" fill="#9F747C" opacity="0.07"/>
+          <circle cx="385" cy="100" r="15" fill="#9F747C" opacity="0.9"/>
+          <circle cx="385" cy="100" r="6" fill="white"/>
+          <line x1="400" y1="100" x2="510" y2="100" stroke="#263238" stroke-width="1.2" opacity="0.13"/>
+          <circle cx="520" cy="100" r="8" fill="#9F747C" opacity="0.38"/>
+          <g fill="#263238" opacity="0.08">
+            <circle cx="530" cy="22" r="2"/><circle cx="555" cy="22" r="2"/><circle cx="580" cy="22" r="2"/>
+            <circle cx="530" cy="42" r="2"/><circle cx="555" cy="42" r="2"/>
+            <circle cx="28" cy="175" r="2"/><circle cx="52" cy="175" r="2"/>
+            <circle cx="28" cy="190" r="1.8"/>
+          </g>
+        </svg>
+        <div class="case-body">
+          <span class="case-tag">Field automation</span>
+          <div class="case-title">Quote from chaos</div>
+          <p class="case-desc">A construction company's field workers send photos, handwritten notes, and texts in every format. An agent ingests everything, references historical proposals for pricing and format, and generates a branded quote ready for review. The conversion work is gone.</p>
+        </div>
+      </div>
+
+      <div class="case-card reveal d2">
+        <svg class="case-img" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <ellipse cx="300" cy="105" rx="270" ry="78" fill="#f2e8ea" opacity="0.4"/>
+          <line x1="80" y1="52" x2="270" y2="52" stroke="#263238" stroke-width="0.8" opacity="0.15"/>
+          <line x1="80" y1="80" x2="270" y2="80" stroke="#263238" stroke-width="0.8" opacity="0.15"/>
+          <line x1="80" y1="108" x2="270" y2="108" stroke="#263238" stroke-width="0.8" opacity="0.15"/>
+          <line x1="80" y1="136" x2="270" y2="136" stroke="#263238" stroke-width="0.8" opacity="0.15"/>
+          <line x1="80" y1="164" x2="270" y2="164" stroke="#263238" stroke-width="0.8" opacity="0.15"/>
+          <line x1="80" y1="40" x2="80" y2="170" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="118" y1="40" x2="118" y2="170" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="156" y1="40" x2="156" y2="170" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="194" y1="40" x2="194" y2="170" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="232" y1="40" x2="232" y2="170" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="270" y1="40" x2="270" y2="170" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <rect x="82" y="54" width="34" height="24" rx="3" fill="#9F747C" opacity="0.2"/>
+          <rect x="158" y="82" width="34" height="24" rx="3" fill="#9F747C" opacity="0.24"/>
+          <rect x="120" y="110" width="72" height="24" rx="3" fill="#9F747C" opacity="0.16"/>
+          <rect x="196" y="138" width="34" height="24" rx="3" fill="#9F747C" opacity="0.22"/>
+          <line x1="270" y1="105" x2="296" y2="105" stroke="#263238" stroke-width="1.2" opacity="0.15"/>
+          <circle cx="310" cy="105" r="14" fill="#9F747C" opacity="0.9"/>
+          <circle cx="310" cy="105" r="6" fill="white"/>
+          <line x1="323" y1="105" x2="374" y2="55" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="323" y1="105" x2="374" y2="82" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="323" y1="105" x2="374" y2="109" stroke="#263238" stroke-width="1.2" opacity="0.13"/>
+          <line x1="323" y1="105" x2="374" y2="136" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="323" y1="105" x2="374" y2="163" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <circle cx="380" cy="55" r="5" fill="#9F747C" opacity="0.35"/>
+          <circle cx="380" cy="82" r="5" fill="#9F747C" opacity="0.4"/>
+          <circle cx="380" cy="109" r="5" fill="#9F747C" opacity="0.35"/>
+          <circle cx="380" cy="136" r="5" fill="#9F747C" opacity="0.28"/>
+          <circle cx="380" cy="163" r="5" fill="#9F747C" opacity="0.38"/>
+          <line x1="388" y1="55" x2="520" y2="55" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="388" y1="82" x2="520" y2="82" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="388" y1="109" x2="535" y2="109" stroke="#263238" stroke-width="1" opacity="0.15"/>
+          <line x1="388" y1="136" x2="520" y2="136" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="388" y1="163" x2="520" y2="163" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <g fill="#263238" opacity="0.08">
+            <circle cx="30" cy="20" r="2"/><circle cx="54" cy="20" r="2"/>
+            <circle cx="30" cy="44" r="2"/>
+            <circle cx="550" cy="172" r="2"/><circle cx="574" cy="172" r="2"/>
+            <circle cx="574" cy="192" r="2"/>
+          </g>
+        </svg>
+        <div class="case-body">
+          <span class="case-tag">Productivity</span>
+          <div class="case-title">Calendar as a timesheet</div>
+          <p class="case-desc">Teams spend hours on time logging. We connected the calendar to the project management system - time blocks become log entries automatically. Use the information you already have.</p>
+        </div>
+      </div>
+
+      <div class="case-card reveal d1">
+        <svg class="case-img" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <ellipse cx="300" cy="100" rx="275" ry="78" fill="#f2e8ea" opacity="0.45"/>
+          <circle cx="80" cy="40" r="7" fill="#9F747C" opacity="0.32"/>
+          <circle cx="80" cy="70" r="6" fill="#263238" opacity="0.18"/>
+          <circle cx="80" cy="100" r="7" fill="#9F747C" opacity="0.28"/>
+          <circle cx="80" cy="130" r="6" fill="#263238" opacity="0.18"/>
+          <circle cx="80" cy="160" r="7" fill="#9F747C" opacity="0.32"/>
+          <line x1="94" y1="40" x2="118" y2="40" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="94" y1="48" x2="110" y2="48" stroke="#263238" stroke-width="0.8" opacity="0.09"/>
+          <line x1="94" y1="100" x2="118" y2="100" stroke="#263238" stroke-width="0.8" opacity="0.12"/>
+          <line x1="94" y1="108" x2="110" y2="108" stroke="#263238" stroke-width="0.8" opacity="0.09"/>
+          <line x1="87" y1="40" x2="270" y2="100" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="87" y1="70" x2="270" y2="100" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="87" y1="100" x2="270" y2="100" stroke="#263238" stroke-width="1" opacity="0.12"/>
+          <line x1="87" y1="130" x2="270" y2="100" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <line x1="87" y1="160" x2="270" y2="100" stroke="#263238" stroke-width="1" opacity="0.1"/>
+          <circle cx="300" cy="100" r="50" stroke="#9F747C" stroke-width="1.2" opacity="0.18"/>
+          <circle cx="300" cy="100" r="30" stroke="#9F747C" stroke-width="1.2" opacity="0.25"/>
+          <circle cx="300" cy="100" r="30" fill="#9F747C" opacity="0.07"/>
+          <circle cx="300" cy="100" r="14" fill="#9F747C" opacity="0.9"/>
+          <circle cx="300" cy="100" r="6" fill="white"/>
+          <line x1="314" y1="100" x2="440" y2="100" stroke="#263238" stroke-width="1.4" opacity="0.15"/>
+          <circle cx="452" cy="100" r="30" stroke="#9F747C" stroke-width="1.2" opacity="0.22"/>
+          <circle cx="452" cy="100" r="12" fill="#9F747C" opacity="0.45"/>
+          <line x1="478" y1="84" x2="535" y2="84" stroke="#263238" stroke-width="1" opacity="0.14"/>
+          <line x1="478" y1="100" x2="548" y2="100" stroke="#263238" stroke-width="1" opacity="0.14"/>
+          <line x1="478" y1="116" x2="525" y2="116" stroke="#263238" stroke-width="1" opacity="0.11"/>
+          <g fill="#263238" opacity="0.08">
+            <circle cx="28" cy="20" r="2"/><circle cx="52" cy="20" r="2"/>
+            <circle cx="28" cy="44" r="2"/>
+            <circle cx="550" cy="160" r="2"/><circle cx="574" cy="160" r="2"/>
+            <circle cx="574" cy="184" r="2"/>
+          </g>
+        </svg>
+        <div class="case-body">
+          <span class="case-tag">Reporting</span>
+          <div class="case-title">WhatsApp to weekly report</div>
+          <p class="case-desc">Every Monday, a bot sends a WhatsApp message asking for the previous week's hours. The user replies. That's the entire interaction. Hours flow into the system without portals, logins, or friction.</p>
+        </div>
+      </div>
+
+      <div class="case-card reveal d2">
+        <svg class="case-img" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <ellipse cx="240" cy="100" rx="220" ry="82" fill="#f2e8ea" opacity="0.5"/>
+          <circle cx="180" cy="100" r="62" stroke="#9F747C" stroke-width="1" opacity="0.14"/>
+          <circle cx="180" cy="100" r="42" stroke="#9F747C" stroke-width="1" opacity="0.2"/>
+          <circle cx="180" cy="100" r="22" fill="#9F747C" opacity="0.85"/>
+          <circle cx="180" cy="100" r="10" fill="white"/>
+          <path d="M 202 74 Q 228 100 202 126" stroke="#9F747C" stroke-width="1.5" opacity="0.35" fill="none"/>
+          <path d="M 216 58 Q 258 100 216 142" stroke="#9F747C" stroke-width="1.2" opacity="0.22" fill="none"/>
+          <path d="M 232 44 Q 290 100 232 156" stroke="#9F747C" stroke-width="1" opacity="0.15" fill="none"/>
+          <line x1="242" y1="100" x2="348" y2="100" stroke="#263238" stroke-width="1.4" opacity="0.15"/>
+          <circle cx="360" cy="100" r="12" fill="#9F747C" opacity="0.6"/>
+          <line x1="360" y1="100" x2="390" y2="52" stroke="#263238" stroke-width="1" opacity="0.12"/>
+          <line x1="360" y1="100" x2="418" y2="76" stroke="#263238" stroke-width="1" opacity="0.12"/>
+          <line x1="360" y1="100" x2="418" y2="124" stroke="#263238" stroke-width="1" opacity="0.12"/>
+          <line x1="360" y1="100" x2="390" y2="148" stroke="#263238" stroke-width="1" opacity="0.12"/>
+          <circle cx="390" cy="52" r="8" fill="#9F747C" opacity="0.38"/>
+          <circle cx="418" cy="76" r="7" fill="#263238" opacity="0.2"/>
+          <circle cx="418" cy="124" r="7" fill="#9F747C" opacity="0.32"/>
+          <circle cx="390" cy="148" r="8" fill="#263238" opacity="0.18"/>
+          <line x1="426" y1="76" x2="498" y2="68" stroke="#263238" stroke-width="0.8" opacity="0.1"/>
+          <line x1="426" y1="100" x2="498" y2="100" stroke="#263238" stroke-width="0.8" opacity="0.1"/>
+          <line x1="426" y1="124" x2="498" y2="132" stroke="#263238" stroke-width="0.8" opacity="0.1"/>
+          <circle cx="504" cy="68" r="6" fill="#9F747C" opacity="0.28"/>
+          <circle cx="504" cy="100" r="6" fill="#263238" opacity="0.16"/>
+          <circle cx="504" cy="132" r="6" fill="#9F747C" opacity="0.28"/>
+          <g fill="#263238" opacity="0.08">
+            <circle cx="28" cy="20" r="2"/><circle cx="52" cy="20" r="2"/>
+            <circle cx="28" cy="44" r="2"/>
+            <circle cx="548" cy="162" r="2"/><circle cx="572" cy="162" r="2"/>
+            <circle cx="572" cy="184" r="2"/>
+          </g>
+        </svg>
+        <div class="case-body">
+          <span class="case-tag">MVP</span>
+          <div class="case-title">Field sales app, built in days</div>
+          <p class="case-desc">A voice note taker for soft information that CRM doesn't capture. Field reps speak, the system logs. WhatsApp messages convert to CRM entries via an AI layer. MVPs like this take days, not months.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer-outer">
+  <div class="footer-inner reveal">
+    <svg width="38" height="38" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg"
+         style="display: block; margin: 0 auto 1.75rem;" aria-hidden="true">
+      <path d="M7.5 5.5C4.8 7.5 3 11 3 15s1.8 8.2 5.5 10.2c3.7 2 8.5 1.8 12.2-.5S26 18 25 13C24 8 20 4.2 15.5 3.5 12 3 9.5 4 7.5 5.5z" fill="#9F747C"/>
+      <path d="M11 10.5c-1.8 1.8-2.5 4.5-1.8 7s3 5 6 5.8c3 .8 6.2-.2 8-2.8s2-6.8-.2-9.5S17 6.8 13.5 7.5L11 10.5z" fill="#263238" opacity="0.14"/>
+    </svg>
+    <h2>If any of this sounds like your problem, let's talk.</h2>
+    <p class="footer-sub">No decks. No discovery calls with eight people. A direct conversation with our team.</p>
+    <a href="mailto:ai@abilitymatrix.com" class="btn-primary">Get in touch</a>
+    <div class="footer-meta">
+      <a href="mailto:ai@abilitymatrix.com">ai@abilitymatrix.com</a><br>
+      AbilityMatrix &nbsp;&middot;&nbsp; Toronto, Canada
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Tap-to-flip for touch devices
+  document.querySelectorAll('.matrix-card').forEach(card => {
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+  });
+</script>
+</body>
+</html>
